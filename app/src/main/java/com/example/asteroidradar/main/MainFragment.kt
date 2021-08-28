@@ -9,18 +9,24 @@ import com.example.asteroidradar.R
 import com.example.asteroidradar.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
-
     private val viewModel: MainViewModel by lazy {
-        ViewModelProvider(this).get(MainViewModel::class.java)
+        val activity = requireNotNull(this.activity)
+        ViewModelProvider(
+            this,
+            MainViewModel.Factory(activity.application)
+        ).get(MainViewModel::class.java)
     }
+
     private val asteroidAdapter = AsteroidAdapter(
-        AsteroidAdapter.OnItemClickListener{
+        AsteroidAdapter.OnItemClickListener {
             this.findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
         }
     )
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.run {
             lifecycleOwner = this@MainFragment
@@ -36,8 +42,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getTodayPicture()
-        viewModel.getPeriodAsteroid()
-        viewModel.asteroid.observe(viewLifecycleOwner, {
+        viewModel.asteroids.observe(viewLifecycleOwner, {
             it?.let {
                 asteroidAdapter.submitList(it)
             }
@@ -50,6 +55,13 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        viewModel.updateFilter(
+            when (item.itemId) {
+                R.id.show_today_menu -> MainViewModel.AsteroidsFilter.TODAY
+                R.id.show_all_menu -> MainViewModel.AsteroidsFilter.ALL
+                else -> MainViewModel.AsteroidsFilter.WEEK
+            }
+        )
         return true
     }
 }
