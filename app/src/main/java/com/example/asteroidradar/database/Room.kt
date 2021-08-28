@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Dao
 interface AsteroidDao {
-    @Query("select * from databaseasteroid where closeApproachDate between :today and :endDay order by closeApproachDate asc")
+    @Query("select * from databaseasteroid where closeApproachDate>=:today and closeApproachDate<:endDay order by closeApproachDate asc")
     fun getWeekAsteroids(today: String, endDay: String): LiveData<List<DatabaseAsteroid>>
 
     @Query("select * from databaseasteroid where closeApproachDate==:today")
