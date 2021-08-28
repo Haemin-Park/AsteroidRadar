@@ -22,4 +22,10 @@
     <string name="asteroid_codename">asteroid codename</string>
     <string name="asteroid_closeapproachdate">asteroid closeApproachDate</string>
     <string name="asteroid_ispotentiallyhazardous">asteroid isPotentiallyHazardous</string>
+    <string name="asteroid_absolute_magnitude">asteroid absoluteMagnitude</string>
+    <string name="help_button">Help button</string>
+    <string name="asteroid_estimated_diameter">asteroid estimatedDiameter</string>
+    <string name="asteroid_relative_velocity">asteroid relativeVelocity</string>
+    <string name="asteroid_distance_from_earth">asteroid distanceFromEarth</string>
+    <string name="image_of_the_day_title">image of the day title</string>
 </resources>
