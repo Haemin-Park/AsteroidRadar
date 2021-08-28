@@ -1,8 +1,9 @@
-package com.example.asteroidradar
+package com.example.asteroidradar.util
 
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.example.asteroidradar.R
 import com.example.asteroidradar.data.PictureOfDay
 import com.squareup.picasso.Picasso
 

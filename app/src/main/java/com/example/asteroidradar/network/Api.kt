@@ -1,7 +1,6 @@
 package com.example.asteroidradar.network
 
-import com.example.asteroidradar.Constants
-import com.example.asteroidradar.data.Asteroid
+import com.example.asteroidradar.util.Constants
 import com.example.asteroidradar.data.PictureOfDay
 import retrofit2.http.GET
 import retrofit2.http.Query

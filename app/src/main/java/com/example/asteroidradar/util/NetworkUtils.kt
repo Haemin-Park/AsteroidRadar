@@ -1,9 +1,8 @@
-package com.example.asteroidradar.api
+package com.example.asteroidradar.util
 
 import android.annotation.SuppressLint
 import com.example.asteroidradar.data.Asteroid
-import com.example.asteroidradar.Constants
-import com.example.asteroidradar.Constants.API_QUERY_DATE_FORMAT
+import com.example.asteroidradar.util.Constants.API_QUERY_DATE_FORMAT
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,8 +42,9 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
     return asteroidList
 }
 
-val START_DATE = getNextSevenDaysFormattedDates()[0]
-val END_DATE = getNextSevenDaysFormattedDates().last()
+val nextSevenDays = getNextSevenDaysFormattedDates()
+val START_DATE = nextSevenDays[0] // = today
+val END_DATE = nextSevenDays.last()
 
 @SuppressLint("WeekBasedYear")
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
