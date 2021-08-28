@@ -1,5 +1,6 @@
 package com.example.asteroidradar.network
 
+import com.example.asteroidradar.Constants
 import com.example.asteroidradar.data.Asteroid
 import com.example.asteroidradar.data.PictureOfDay
 import retrofit2.http.GET
@@ -10,11 +11,11 @@ interface Api {
     suspend fun getAsteroid(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
-        @Query("api_key") apiKey: String
-    ): Asteroid
+        @Query("api_key") apiKey: String = Constants.API_KEY
+    ): String
 
     @GET("/planetary/apod")
     suspend fun getPictureOfDay(
-        @Query("api_key") apiKey: String
+        @Query("api_key") apiKey: String = Constants.API_KEY
     ): PictureOfDay
 }
